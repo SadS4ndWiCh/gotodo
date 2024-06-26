@@ -12,6 +12,8 @@ func (s *Server) Bootstrap() *http.ServeMux {
 	todoController := controllers.TodoController{}
 	api.Handle("GET /todos", http.HandlerFunc(todoController.GetAllTodo))
 	api.Handle("POST /todos", http.HandlerFunc(todoController.CreateTodo))
+	api.Handle("GET /todos/{id}", http.HandlerFunc(todoController.GetOneTodo))
+	api.Handle("POST /todos/{id}/complete", http.HandlerFunc(todoController.ToggleTodo))
 
 	return api
 }
