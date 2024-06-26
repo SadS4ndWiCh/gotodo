@@ -13,3 +13,7 @@ type GetOneTodoRequest struct {
 type ToggleCompleteTodoRequest struct {
 	Id uuid.UUID `json:"id" binding:"required"`
 }
+
+type DeleteTodoRequest struct {
+	Id uuid.UUID `json:"id" binding:"required"`
+}

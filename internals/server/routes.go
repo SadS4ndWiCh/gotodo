@@ -13,6 +13,7 @@ func (s *Server) Bootstrap() *http.ServeMux {
 	api.Handle("GET /todos", http.HandlerFunc(todoController.GetAllTodo))
 	api.Handle("POST /todos", http.HandlerFunc(todoController.CreateTodo))
 	api.Handle("GET /todos/{id}", http.HandlerFunc(todoController.GetOneTodo))
+	api.Handle("DELETE /todos/{id}", http.HandlerFunc(todoController.DeleteTodo))
 	api.Handle("POST /todos/{id}/complete", http.HandlerFunc(todoController.ToggleTodo))
 
 	return api

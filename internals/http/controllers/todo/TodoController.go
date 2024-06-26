@@ -109,3 +109,20 @@ func (TodoController) ToggleTodo(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Write(todo)
 }
+
+func (TodoController) DeleteTodo(w http.ResponseWriter, r *http.Request) {
+	id := uuid.MustParse(r.PathValue("id"))
+	todoUseCase := usecases.TodoUseCase{}
+
+	req := requests.DeleteTodoRequest{
+		Id: id,
+	}
+
+	err := todoUseCase.DeleteTodoAction(req)
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
